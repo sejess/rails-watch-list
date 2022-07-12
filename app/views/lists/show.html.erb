@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= @list.name %>
+</p>
+
+<p>
+  <% @bookmarks.each do |bookmark| %>
+    <%= bookmark.movie.title %> - <%= bookmark.movie.overview %><br>
+  <% end %>
+</p>
+
+<%= link_to 'Back', lists_path %>
+<%= link_to 'Add a new bookmark', new_list_bookmark_path(@list) %>
