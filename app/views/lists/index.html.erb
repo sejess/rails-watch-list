@@ -1,12 +1,40 @@
-<h1>Lists</h1>
-<ul>
-  <% @lists.each do |list| %>
-    <% if list.photo.attached? %>
-      <li><%= cl_image_tag list.photo.key %></li>
-    <% else %>
-      <li>No image</li>
+<!-- Navbar -->
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="container-fluid">
+    <%= link_to "#", class: "navbar-brand" do %>
+      <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
     <% end %>
-    <li><%= link_to list.name, list_path(list) %></li>
-  <% end %>
-</ul>
-<%= link_to 'Make a new list', new_list_path(@list) %>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item active">
+          <%= link_to "Home", root_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Make a new list', new_list_path(@list), class: "nav-link" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- Banner section -->
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1616530940355-351fabd9524b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1935&q=80)">
+  <div class="container">
+      <h1>Your Movie Lists</h1>
+  </div>
+</div>
+<!-- List Items -->
+<div class="container">
+  <h2 class="text-center">Your Collections</h2>
+  <div class="cards">
+    <% @lists.each do |list| %>
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= list.photo.attached? ? cl_image_path(list.photo.key, height: 300, crop: :fill) : "https://unsplash.com/photos/P2wLo_PzHjU" %>)">
+        <%= link_to list.name, list_path(list) %>
+      </div>
+    <% end %>
+  </div>
+</div>
