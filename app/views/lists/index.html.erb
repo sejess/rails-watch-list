@@ -1,7 +1,7 @@
 <h1>Lists</h1>
 <ul>
   <% @lists.each do |list| %>
-    <% if list.attached? %>
+    <% if list.photo.attached? %>
       <li><%= cl_image_tag list.photo.key %></li>
     <% else %>
       <li>No image</li>
